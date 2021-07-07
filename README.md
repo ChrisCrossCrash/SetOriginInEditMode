@@ -2,6 +2,8 @@
 
 This addon adds a `Set Origin to Selected` option to the right-click menu in Edit Mode.
 
+![Addon Demonstration](demonstration.gif)
+
 ### Motivation
 
 The usual way to set the origin to selected vertices/edges/faces is this:
@@ -11,7 +13,7 @@ The usual way to set the origin to selected vertices/edges/faces is this:
 3. `Tab` into Object Mode.
 4. Right-click on the active object and select `Set Origin > Origin to 3D Cursor`
 
-Now you have the origin where you want it, except you moved the 3D cursor and you are in Object Mode. Also, this is a quite complex series of steps to remember for something that should be trivial.
+Now you have the origin where you want it, but you moved the 3D cursor and you are in Object Mode. Also, this is a quite complex series of steps to remember for something so trivial.
 
 This addon simplifies the process by adding a `Set Origin to Selected` option to the right-click menu in Edit Mode.
 
