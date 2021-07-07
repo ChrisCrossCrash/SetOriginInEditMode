@@ -17,7 +17,7 @@ bl_info = {
     "warning": "",  # used for warning icon and text in add-ons panel
     "wiki_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode",
     "tracker_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues",
-    "support": "TESTING",
+    "support": "COMMUNITY",
     "category": "Object",
 }
 
