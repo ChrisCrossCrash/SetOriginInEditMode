@@ -21,3 +21,7 @@ This add-on simplifies the process by adding a `Set Origin to Selected` option t
 
 1. Download [set_origin_in_edit_mode.py](set_origin_in_edit_mode.py)
 1. Follow the [Blender Documentation instructions for installing add-ons](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html#installing-add-ons) to install the `.py` file as an add-on
+
+### Known Issues
+
+- [Undoing `Set Origin to Selected` sometimes creates unnecessary undo history entries, and it's not always possible to redo the action.](https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues/1)
