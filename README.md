@@ -1,8 +1,8 @@
-# Set Origin in Edit Mode Addon
+# Set Origin in Edit Mode Add-on
 
-This addon adds a `Set Origin to Selected` option to the right-click menu in Edit Mode.
+This add-on adds a `Set Origin to Selected` option to the right-click menu in Edit Mode.
 
-![Addon Demonstration](demonstration.gif)
+![Add-on Demonstration](demonstration.gif)
 
 ### Motivation
 
@@ -15,8 +15,9 @@ The usual way to set the origin to selected vertices/edges/faces is this:
 
 Now you have the origin where you want it, but you moved the 3D cursor and you are in Object Mode. Also, this is a quite complex series of steps to remember for something so trivial.
 
-This addon simplifies the process by adding a `Set Origin to Selected` option to the right-click menu in Edit Mode.
+This add-on simplifies the process by adding a `Set Origin to Selected` option to the right-click menu in Edit Mode.
 
 ### Installation
 
-TODO 
+1. Download [set_origin_in_edit_mode.py](set_origin_in_edit_mode.py)
+1. Follow the [Blender Documentation instructions for installing add-ons](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html#installing-add-ons) to install the `.py` file as an add-on

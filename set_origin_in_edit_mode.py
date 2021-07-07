@@ -14,7 +14,7 @@ bl_info = {
     # TODO: Test the minimum version
     "blender": (2, 93, 0),
     "location": "View3D (Edit Mode) > right-click > Set Origin to Selected",
-    "warning": "",  # used for warning icon and text in addons panel
+    "warning": "",  # used for warning icon and text in add-ons panel
     "wiki_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode",
     "tracker_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues",
     "support": "TESTING",
