@@ -15,17 +15,15 @@ bl_info = {
     "blender": (2, 93, 0),
     "location": "View3D (Edit Mode) > right-click > Set Origin to Selected",
     "warning": "",  # used for warning icon and text in addons panel
-    # TODO: Set this to the GitHub repo
-    "wiki_url": "https://www.chriskumm.com/",
-    # TODO: Set this to the GitHub repo tracker
-    "tracker_url": "https://www.chriskumm.com/",
+    "wiki_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode",
+    "tracker_url": "https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues",
     "support": "TESTING",
     "category": "Object",
 }
 
 
 def get_avg_location(*verts: bmesh.types.BMVert):
-    """Return the average location of one or more of vertices."""
+    """Return the average location of one or more vertices."""
     result = Vector((0, 0, 0))
     for v in verts:
         result += v.co
@@ -33,9 +31,13 @@ def get_avg_location(*verts: bmesh.types.BMVert):
     return result
 
 
-def set_3d_cursor_to_active_verts():
+def set_3d_cursor_to_active_verts(context):
     """Moves the object origin to the average location of the vertices selected in edit mode."""
-    edit_object = bpy.context.edit_object
+
+    # FIXME: Undoing this action takes 3 or more undos when it should take one. Also, it can't be fully re-done
+    #  after it has been undone.
+
+    edit_object = context.edit_object
     mesh = edit_object.data
     bm = bmesh.from_edit_mesh(mesh)
 
@@ -47,7 +49,7 @@ def set_3d_cursor_to_active_verts():
         raise Exception("You must select at least one vertex to change the object origin.")
 
     # Make a copy of the 3D cursor location so that we can set it back after using it.
-    cursor_start = bpy.context.scene.cursor.location.copy()
+    cursor_start = context.scene.cursor.location.copy()
 
     rotation = edit_object.rotation_euler
     scale = edit_object.scale
@@ -69,7 +71,7 @@ def set_3d_cursor_to_active_verts():
     bpy.ops.object.mode_set(mode='EDIT')
 
     # Move the 3D cursor back to its starting location.
-    bpy.context.scene.cursor.location = cursor_start
+    context.scene.cursor.location = cursor_start
 
 
 # noinspection PyMethodMayBeStatic
@@ -84,29 +86,24 @@ class SET_ORIGIN_IN_EDIT_MODE_OT_main_operator(bpy.types.Operator):
 
     # noinspection PyUnusedLocal
     def execute(self, context):
-        set_3d_cursor_to_active_verts()
+        set_3d_cursor_to_active_verts(context)
         return {'FINISHED'}
 
 
-# noinspection PyMethodMayBeStatic
-class SET_ORIGIN_IN_EDIT_MODE_MT_main_menu_item(bpy.types.Menu):
-    bl_label = "Simple Custom Menu"
-    bl_idname = "OBJECT_MT_simple_custom_menu"
-
-    # noinspection PyUnusedLocal
-    def draw(self, context):
-        layout = self.layout
-        layout.operator("set_origin_in_edit_mode.main_operator")
+# noinspection PyUnusedLocal
+def draw_menu_item(self, context):
+    layout = self.layout
+    layout.operator("set_origin_in_edit_mode.main_operator")
 
 
 def register():
     bpy.utils.register_class(SET_ORIGIN_IN_EDIT_MODE_OT_main_operator)
-    bpy.types.VIEW3D_MT_edit_mesh_context_menu.append(SET_ORIGIN_IN_EDIT_MODE_MT_main_menu_item.draw)
+    bpy.types.VIEW3D_MT_edit_mesh_context_menu.append(draw_menu_item)
 
 
 def unregister():
     bpy.utils.unregister_class(SET_ORIGIN_IN_EDIT_MODE_OT_main_operator)
-    bpy.types.VIEW3D_MT_edit_mesh_context_menu.remove(SET_ORIGIN_IN_EDIT_MODE_MT_main_menu_item.draw)
+    bpy.types.VIEW3D_MT_edit_mesh_context_menu.remove(draw_menu_item)
 
 
 if __name__ == "__main__":
