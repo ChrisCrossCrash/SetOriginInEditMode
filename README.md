@@ -24,4 +24,4 @@ This add-on simplifies the process by adding a `Set Origin to Selected` option t
 
 ### Known Issues
 
-- [Undoing `Set Origin to Selected` sometimes creates unnecessary undo history entries, and it's not always possible to redo the action.](https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues/1)
+- [`Set Origin to Selected` sometimes creates unnecessary undo history entries, and it's not always possible to redo the action.](https://github.com/ChrisCrossCrash/SetOriginInEditMode/issues/1)
