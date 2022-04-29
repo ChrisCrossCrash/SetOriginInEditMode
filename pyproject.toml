@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "set-origin-in-edit-mode"
+version = "0.1.0"
+description = "Blender addon that adds a `Set Origin to Selected` option to the right-click menu in Edit Mode"
+authors = ["Christopher Kumm <chrislkumm@protonmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+fake-bpy-module-latest = "^20220429"
+black = "^22.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
