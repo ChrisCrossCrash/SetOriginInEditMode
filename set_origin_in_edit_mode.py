@@ -46,7 +46,9 @@ def set_3d_cursor_to_active_verts(context):
 
     if not len(active_verts):
         # TODO: Find a more graceful way of informing the user than raising an exception.
-        raise Exception("You must select at least one vertex to change the object origin.")
+        raise Exception(
+            "You must select at least one vertex to change the object origin."
+        )
 
     # Make a copy of the 3D cursor location so that we can set it back after using it.
     cursor_start = context.scene.cursor.location.copy()
@@ -66,31 +68,29 @@ def set_3d_cursor_to_active_verts(context):
 
     # Switch to object mode, set the object origin to the 3D cursor location, then switch back to edit mode.
     # (I call this trick the "Fastest Gun in the West")
-    bpy.ops.object.mode_set(mode='OBJECT')
-    bpy.ops.object.origin_set(type='ORIGIN_CURSOR')
-    bpy.ops.object.mode_set(mode='EDIT')
+    bpy.ops.object.mode_set(mode="OBJECT")
+    bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
+    bpy.ops.object.mode_set(mode="EDIT")
 
     # Move the 3D cursor back to its starting location.
     context.scene.cursor.location = cursor_start
 
 
-# noinspection PyMethodMayBeStatic
 class SET_ORIGIN_IN_EDIT_MODE_OT_main_operator(bpy.types.Operator):
     """Moves the object origin to the average location of the vertices selected in edit mode."""
+
     bl_idname = "set_origin_in_edit_mode.main_operator"
     bl_label = "Set Origin to Selected"
 
     @classmethod
     def poll(cls, context):
-        return context.mode == 'EDIT_MESH'
+        return context.mode == "EDIT_MESH"
 
-    # noinspection PyUnusedLocal
     def execute(self, context):
         set_3d_cursor_to_active_verts(context)
-        return {'FINISHED'}
+        return {"FINISHED"}
 
 
-# noinspection PyUnusedLocal
 def draw_menu_item(self, context):
     layout = self.layout
     layout.operator("set_origin_in_edit_mode.main_operator")
